@@ -12,3 +12,6 @@ vim.keymap.set('n', '<leader>wj', '<C-W>j', {})
 vim.keymap.set('n', '<leader>wk', '<C-W>k', {})
 vim.keymap.set('n', '<leader>wl', '<C-W>l', {})
 vim.keymap.set('n', '<leader>rr', '<C-R>', {})
+
+vim.keymap.set('n', '<leader>sv', ':vsplit<CR>', {})
+vim.keymap.set('n', '<leader>sh', ':split<CR>', {})
