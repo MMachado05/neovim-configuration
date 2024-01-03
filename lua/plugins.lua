@@ -4,5 +4,7 @@ return {
 
   * HakonHarnes/img-clip.nvim
   * stevearc/oil.nvim
+  * https://www.youtube.com/watch?v=IyBAuDPzdFY <-- some git stuff that would
+    probably be pretty useful
     --]]
 }
