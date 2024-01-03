@@ -15,3 +15,6 @@ vim.keymap.set('n', '<leader>rr', '<C-R>', {})
 
 vim.keymap.set('n', '<leader>sv', ':vsplit<CR>', {})
 vim.keymap.set('n', '<leader>sh', ':split<CR>', {})
+
+vim.cmd("noremap <expr> j v:count ? 'j' : 'gj'")
+vim.cmd("noremap <expr> k v:count ? 'k' : 'gk'")
