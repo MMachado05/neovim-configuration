@@ -10,6 +10,9 @@ return {
 				history = true,
 				updateevents = "TextChanged,TextChangedI",
 			})
+
+      -- TODO: figure out how to jump between nodes lmao
+      vim.cmd("command LuasnipEdit execute 'vsplit | edit ~/.config/nvim/snippets/' . expand('%:e') . '.lua'")
 		end,
 	},
 	{
