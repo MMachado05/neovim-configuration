@@ -68,6 +68,8 @@ return {
 		},
 		config = function()
 			require("todo-comments").setup()
+
+      vim.cmd("command Todos TodoTrouble")
 		end,
 	},
 	{
