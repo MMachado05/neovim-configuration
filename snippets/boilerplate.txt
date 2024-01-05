@@ -13,8 +13,4 @@ local rep = require("luasnip.extras").rep
 
 local snippets = {}
 
---  Snippets  --
-
---  Snippets  --
-
 return snippets
