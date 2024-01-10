@@ -13,6 +13,22 @@ local rep = require("luasnip.extras").rep
 
 local snippets = {
   -- Snippets go here
+  s(
+    "class",
+  fmt([[
+  /**
+   * TODO: Change this snippet's docstring.
+   */
+  {}{}{} {{
+    {}
+  }}
+  
+  ]], {
+    c(1, { t(""), t("public "), t("private ")}),
+    c(2, { t(""), t("static ")}),
+        i(3, "ClassName"),
+        i(4, "// Class content")
+    }))
 }
 
 return snippets

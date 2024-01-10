@@ -6,16 +6,43 @@ return {
 		"L3MON4D3/LuaSnip",
 		version = "v2.*",
 		config = function()
-			local ls = require("luasnip")
+			local luasnip = require("luasnip")
 			require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
 
-			ls.config.set_config({
+			luasnip.config.set_config({
 				history = true,
 				updateevents = "TextChanged,TextChangedI",
+				ext_opts = {
+					[require("luasnip.util.types").choiceNode] = {
+						active = {
+							virt_text = { { "●", "GruvboxPurple" } },
+						},
+					},
+				},
 			})
 
-			-- TODO: figure out how to jump between nodes lmao
-			vim.cmd("command LuasnipEdit execute 'vsplit | edit ~/.config/nvim/snippets/' . expand('%:e') . '.lua'")
+			vim.keymap.set({ "i", "s" }, "<a-l>", function()
+				if luasnip.jumpable(1) then
+					luasnip.jump(1)
+				end
+			end)
+			vim.keymap.set({ "i", "s" }, "<a-h>", function()
+				if luasnip.jumpable(-1) then
+					luasnip.jump(-1)
+				end
+			end)
+
+			vim.keymap.set({ "i", "s" }, "<a-j>", function()
+				if luasnip.choice_active() then
+					luasnip.change_choice(1)
+				end
+			end)
+			vim.keymap.set({ "i", "s" }, "<a-k>", function()
+				if luasnip.choice_active() then
+					luasnip.change_choice(-1)
+				end
+			end)
+			vim.cmd("command LuaSnipEdit execute 'vsplit | edit ~/.config/nvim/snippets/' . expand('%:e') . '.lua'")
 		end,
 	},
 	{
@@ -52,7 +79,7 @@ return {
 					["<C-k>"] = cmp.mapping.select_prev_item(),
 					["<C-j>"] = cmp.mapping.select_next_item(),
 					["<C-e>"] = cmp.mapping.abort(),
-					["<CR>"] = cmp.mapping.confirm({ select = true }), -- Set `select` to `false` to only confirm explicitly selected items.
+					["<CR>"] = cmp.mapping.confirm({ select = false }), -- Set `select` to `false` to only confirm explicitly selected items.
 				}),
 				sources = cmp.config.sources({
 					-- Now, each luatable has decreasing priority
