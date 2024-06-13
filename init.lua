@@ -18,3 +18,4 @@ require("lazy").setup("plugins")
 -- Set default colorscheme
 vim.opt.termguicolors = true
 vim.cmd.colorscheme "gruvbox"
+vim.cmd([[autocmd BufNewFile,BufRead *.launch setfiletype xml]])
