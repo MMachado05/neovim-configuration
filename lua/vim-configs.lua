@@ -18,3 +18,5 @@ vim.keymap.set('n', '<leader>sh', ':split<CR>', {})
 
 vim.cmd("noremap <expr> j v:count ? 'j' : 'gj'")
 vim.cmd("noremap <expr> k v:count ? 'k' : 'gk'")
+
+vim.g.vimtex_quickfix_open_on_warning = 0
