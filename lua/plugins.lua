@@ -7,7 +7,6 @@ return {
   * https://www.youtube.com/watch?v=IyBAuDPzdFY <-- some git stuff that would
     probably be pretty useful
   * stevearc/aerial.nvim
-    --]] 
 
   Also: use gc to comment stuff 
     --]]
