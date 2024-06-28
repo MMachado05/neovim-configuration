@@ -8,4 +8,7 @@ return {
     probably be pretty useful
   * stevearc/aerial.nvim
     --]] 
+
+  Also: use gc to comment stuff 
+    --]]
 }

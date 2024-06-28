@@ -25,6 +25,12 @@ return {
 		lazy = false,
 		priority = 875,
 	},
+  {
+    "Mofiqul/adwaita.nvim",
+    name = "adwaita-theme",
+    lazy = false,
+    priority = 850,
+  },
 	{
 		-- DARK THEMES INCLUDED:  nightfox, duskfox, nordfox, terafox, carbonfox
 		-- LIGHT THEMES INCLUDED: dayfox, dawnfox
