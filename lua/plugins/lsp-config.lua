@@ -14,6 +14,7 @@ return {
 					"rust_analyzer",
 					"jdtls",
 					"pyright",
+					"lemminx",
 				},
 			})
 		end,
