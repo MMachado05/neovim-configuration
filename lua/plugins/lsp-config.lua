@@ -39,6 +39,8 @@ return {
 			vim.keymap.set("n", "<leader>i", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, {})
+			vim.keymap.set("n", "<leader>gn", vim.lsp.buf.rename, {}) -- Maybe there's a way to get the command line prompt to appear in a floating window right here?
+			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 			vim.cmd("command AddLsp vsplit | edit ~/.config/nvim/lua/plugins/lsp-config.lua")
 		end,
