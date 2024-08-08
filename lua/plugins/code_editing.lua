@@ -82,12 +82,14 @@ return {
           "jdtls", -- LSP
           "checkstyle", -- Linter
           "google-java-format", -- Formatter
+          -- TODO: This shit's brokey but mason-null-ls seems like a good way to fix it.
+          --  Might even allow me to move all the "ensured" stuff somewhere else, too.
 
           -- XML
           "lemminx",
 
           -- Markdown
-          "mdformat", -- Formatter
+          "marksman", -- LSP
         },
       })
     end,
