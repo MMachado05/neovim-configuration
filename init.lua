@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Import vim options and plugin information
 require("setup")
+require("commands")
 require("keybinds")
 require("lazy").setup("plugins")
 

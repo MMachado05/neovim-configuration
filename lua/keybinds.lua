@@ -22,6 +22,14 @@ vim.keymap.set("n", "<leader>sh", ":split<CR>", {})
 vim.keymap.set("n", "<leader>bp", ":bp<CR>", {})
 vim.keymap.set("n", "<leader>bn", ":bn<CR>", {})
 
+-- LSP features
+vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
+vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, {})
+vim.keymap.set("n", "<leader>gn", vim.lsp.buf.rename, {}) -- Maybe there's a way to get the command line prompt to appear in a floating window right here?
+vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+
 -- ----------------------
 -- Preferred Colorschemes
 -- ----------------------
@@ -36,5 +44,22 @@ vim.keymap.set("n", "<leader>lr", ":colorscheme adwaita | set background=light<C
 -- -----------------------
 -- Plugin-related Keybinds
 -- -----------------------
--- Vimtex
-vim.g.vimtex_quickfix_open_on_warning = 0
+-- Trouble
+vim.keymap.set("n", "<leader>tr", ":TroubleToggle<CR>", {})
+
+-- Neotree
+vim.keymap.set("n", "<leader>nol", ":Neotree filesystem reveal left<CR>", {})
+vim.keymap.set("n", "<leader>nor", ":Neotree filesystem reveal right<CR>", {})
+vim.keymap.set("n", "<leader>ntl", ":Neotree filesystem toggle left<CR>", {})
+vim.keymap.set("n", "<leader>ntr", ":Neotree filesystem toggle right<CR>", {})
+
+-- Undotree
+vim.keymap.set("n", "<leader>us", ":UndotreeShow<CR>", {})
+vim.keymap.set("n", "<leader>uc", ":UndotreeHide<CR>", {})
+vim.keymap.set("n", "<leader>uf", ":UndotreeFocus<CR>", {})
+
+-- Twilight
+vim.keymap.set("n", "<leader>te", ":TwilightEnable<CR>")
+vim.keymap.set("n", "<leader>td", ":TwilightDisable<CR>")
+
+-- Telescope

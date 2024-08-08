@@ -59,8 +59,6 @@ return {
 					-- Like it says elsewhere, this should all eventually be done with mason-null-ls
 				},
 			})
-
-			vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
 		end,
 	},
 	{
@@ -79,15 +77,6 @@ return {
 			lspconfig.pyright.setup({
 				capabilities = capabilities,
 			})
-
-			vim.keymap.set("n", "<leader>i", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, {})
-			vim.keymap.set("n", "<leader>gn", vim.lsp.buf.rename, {}) -- Maybe there's a way to get the command line prompt to appear in a floating window right here?
-			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
-			-- TODO: Move these out into a single "shortcuts" file
-			vim.cmd("command AddLsp vsplit | edit ~/.config/nvim/lua/plugins/code_editing.lua")
 		end,
 	},
 	-- Mason for installing new language servers
@@ -220,7 +209,6 @@ return {
 					luasnip.change_choice(-1)
 				end
 			end)
-			vim.cmd("command LuaSnipEdit execute 'vsplit | edit ~/.config/nvim/snippets/' . expand('%:e') . '.lua'")
 		end,
 	},
 	{
@@ -314,11 +302,9 @@ return {
 	},
 	{
 		"folke/trouble.nvim",
-		config = function()
-			-- TODO: Move all vim keymaps to a separate file
-
-			vim.keymap.set("n", "<leader>tr", ":TroubleToggle<CR>", {})
-		end,
+    opts = {},
+    cmd = "Trouble",
+    -- TODO: I need to read up on the documentation for this (and honestly, all of my plugins)
 	},
 
 	-- ------------------------------
