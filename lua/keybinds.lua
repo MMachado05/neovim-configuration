@@ -1,8 +1,6 @@
 -- --------------------
 -- Vim-related Keybinds
 -- --------------------
-vim.g.mapleader = " "
-
 -- Allow j/k through wrapped lines
 vim.cmd("noremap <expr> j v:count ? 'j' : 'gj'")
 vim.cmd("noremap <expr> k v:count ? 'k' : 'gk'")
