@@ -187,28 +187,6 @@ return {
 					},
 				},
 			})
-
-			vim.keymap.set({ "i", "s" }, "<a-l>", function()
-				if luasnip.jumpable(1) then
-					luasnip.jump(1)
-				end
-			end)
-			vim.keymap.set({ "i", "s" }, "<a-h>", function()
-				if luasnip.jumpable(-1) then
-					luasnip.jump(-1)
-				end
-			end)
-
-			vim.keymap.set({ "i", "s" }, "<a-j>", function()
-				if luasnip.choice_active() then
-					luasnip.change_choice(1)
-				end
-			end)
-			vim.keymap.set({ "i", "s" }, "<a-k>", function()
-				if luasnip.choice_active() then
-					luasnip.change_choice(-1)
-				end
-			end)
 		end,
 	},
 	{

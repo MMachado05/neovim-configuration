@@ -50,6 +50,7 @@ vim.keymap.set("n", "<leader>nol", ":Neotree filesystem reveal left<CR>", {})
 vim.keymap.set("n", "<leader>nor", ":Neotree filesystem reveal right<CR>", {})
 vim.keymap.set("n", "<leader>ntl", ":Neotree filesystem toggle left<CR>", {})
 vim.keymap.set("n", "<leader>ntr", ":Neotree filesystem toggle right<CR>", {})
+vim.keymap.set("n", "<leader>nf", ":Neotree position=float<CR>", {})
 
 -- Undotree
 vim.keymap.set("n", "<leader>us", ":UndotreeShow<CR>", {})
@@ -65,3 +66,42 @@ local telescope_builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", telescope_builtin.find_files, {})
 vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fb", telescope_builtin.buffers, {})
+
+-- Toggleterm
+-- local Terminal = require("toggleterm.terminal").Terminal
+-- local lazygit = Terminal:new({ cmd = "lazygit", display_name = "LazyGit", close_on_exit = true })
+--
+-- function _lazygit_toggle()
+-- 	lazygit:toggle()
+-- end
+--
+-- vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>lua _lazygit_toggle()<CR>", {
+-- 	noremap = true,
+-- 	silent = true,
+-- })
+-- TODO: It's giving me some weird error about vim.highlight functions not existing, so
+--  I'll just continue tmuxing into another session for Lazygit instead.
+
+-- LuaSnip
+local luasnip = require("luasnip")
+vim.keymap.set({ "i", "s" }, "<a-l>", function()
+	if luasnip.jumpable(1) then
+		luasnip.jump(1)
+	end
+end)
+vim.keymap.set({ "i", "s" }, "<a-h>", function()
+	if luasnip.jumpable(-1) then
+		luasnip.jump(-1)
+	end
+end)
+
+vim.keymap.set({ "i", "s" }, "<a-j>", function()
+	if luasnip.choice_active() then
+		luasnip.change_choice(1)
+	end
+end)
+vim.keymap.set({ "i", "s" }, "<a-k>", function()
+	if luasnip.choice_active() then
+		luasnip.change_choice(-1)
+	end
+end)
