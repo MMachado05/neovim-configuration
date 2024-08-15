@@ -55,6 +55,17 @@ return {
       "MunifTanjim/nui.nvim",
       "3rd/image.nvim",
     },
+    config = function()
+      require("neo-tree").setup({
+        filesystem = {
+          window = {
+            mappings = {
+              ["?"] = { "show_help", nowait=false, config = {title = "Order by" , prefix_key = "o"}}
+            }
+          }
+        }
+      })
+    end
   },
   {
     -- For previewing images and viewing them in Neovim
