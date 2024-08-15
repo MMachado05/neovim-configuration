@@ -9,8 +9,22 @@
 -- Plugins that allow neovim to understand Git projects
 
 return {
-	"lewis6991/gitsigns.nvim",
-	config = function()
-		require("gitsigns").setup()
-	end,
+	{
+		-- Gitsigns for visual git elements
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	},
+	-- {
+	-- 	-- Toggleterm to set up integrated Lazygit
+	-- 	"akinsho/toggleterm.nvim",
+	-- 	version = "v1.*",
+	-- 	opts = {},
+	-- 	config = function()
+	-- 		require("toggleterm").setup({
+	-- 			direction = "float",
+	-- 		})
+	-- 	end,
+	-- }, NOTE: See keybinds.lua for why this is commented out.
 }
