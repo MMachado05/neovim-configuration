@@ -60,12 +60,12 @@ return {
         filesystem = {
           window = {
             mappings = {
-              ["?"] = { "show_help", nowait=false, config = {title = "Order by" , prefix_key = "o"}}
-            }
-          }
-        }
+              ["?"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
+            },
+          },
+        },
       })
-    end
+    end,
   },
   {
     -- For previewing images and viewing them in Neovim
@@ -99,6 +99,17 @@ return {
   -- ---------------
   -- Visual Elements
   -- ---------------
+  {
+    "sunjon/Shade.nvim",
+    config = function()
+      require("shade").setup({
+        overlay_opacity = 50,
+        keys = {
+          toggle = "<leader>y",
+        },
+      })
+    end,
+  },
   {
     "folke/twilight.nvim",
   },
