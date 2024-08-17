@@ -1,13 +1,14 @@
 return {
   {
-    "d00h/nvim-rusticated",
-    name = "rusticated-theme",
-    lazy = false,
-    priority = 900,
+    -- For proper Kitty config rendering
+    "fladson/vim-kitty",
   },
+
+  -- ---------------- --
+
   {
     "zenbones-theme/zenbones.nvim",
-    dependencies = { "rktjmp/lush.nvim" }
+    dependencies = { "rktjmp/lush.nvim" },
   },
   {
     -- DARK THEMES INCLUDED:  gruvbox ("set background=dark")
@@ -75,6 +76,11 @@ return {
     name = "everforest-theme",
     lazy = false,
     priority = 800,
+    config = function()
+      require("everforest").setup({
+        background = "soft",
+      })
+    end,
   },
   {
     -- DARK THEMES INCLUDED:  catppuccin/catppuccin-mocha, catppuccin-frappe, catppuccin-macchiato
