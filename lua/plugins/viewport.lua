@@ -100,15 +100,8 @@ return {
   -- Visual Elements
   -- ---------------
   {
-    "sunjon/Shade.nvim",
-    config = function()
-      require("shade").setup({
-        overlay_opacity = 50,
-        keys = {
-          toggle = "<leader>y",
-        },
-      })
-    end,
+    -- NOTE: This requires the pynvim python package (pip3 install pynvim)
+    "TaDaa/vimade",
   },
   {
     "folke/twilight.nvim",
