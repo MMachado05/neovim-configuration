@@ -21,23 +21,29 @@ vim.keymap.set("n", "<leader>bp", ":bp<CR>", {})
 vim.keymap.set("n", "<leader>bn", ":bn<CR>", {})
 
 -- LSP features
-vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
-vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, {})
-vim.keymap.set("n", "<leader>gn", vim.lsp.buf.rename, {}) -- Maybe there's a way to get the command line prompt to appear in a floating window right here?
-vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, {})
+vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, {})
+vim.keymap.set("n", "<leader>lD", vim.lsp.buf.declaration, {})
+vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, {}) -- Maybe there's a way to get the command line prompt to appear in a floating window right here?
+vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, {})
+vim.keymap.set({ "n", "v" }, "<leader>lc", vim.lsp.buf.code_action, {})
 
 -- ----------------------
 -- Preferred Colorschemes
 -- ----------------------
+vim.cmd("command FloatBorderBGOff lua vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'NONE' })")
+
 -- Dark mode colorschemes
-vim.keymap.set("n", "<leader>lq", ":colorscheme gruvbox | set background=dark<CR>", {})
-vim.keymap.set("n", "<leader>lw", ":colorscheme catppuccin-macchiato | set background=dark<CR>", {})
+vim.keymap.set("n", "<leader>dp", ":colorscheme gruvbox | set background=dark | FloatBorderBGOff<CR>", {})
+vim.keymap.set("n", "<leader>do", ":colorscheme zenbones | FloatBorderBGOff<CR>", {})
+vim.keymap.set("n", "<leader>di", ":colorscheme kanagawa-dragon | FloatBorderBGOff<CR>", {})
+vim.keymap.set("n", "<leader>du", ":colorscheme terafox | FloatBorderBGOff<CR>", {})
 
 -- Light mode colorschemes
-vim.keymap.set("n", "<leader>le", ":colorscheme dawnfox<CR>", {})
-vim.keymap.set("n", "<leader>lr", ":colorscheme adwaita | set background=light<CR>", {})
+vim.keymap.set("n", "<leader>lq", ":colorscheme material-lighter | FloatBorderBGOff<CR>", {})
+vim.keymap.set("n", "<leader>lw", ":colorscheme rose-pine-dawn | FloatBorderBGOff<CR>", {})
+vim.keymap.set("n", "<leader>le", ":colorscheme rose-pine-dawn | FloatBorderBGOff<CR>", {})
+vim.keymap.set("n", "<leader>lr", ":colorscheme rose-pine-dawn | FloatBorderBGOff<CR>", {})
 
 -- -----------------------
 -- Plugin-related Keybinds
@@ -66,21 +72,6 @@ local telescope_builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", telescope_builtin.find_files, {})
 vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fb", telescope_builtin.buffers, {})
-
--- Toggleterm
--- local Terminal = require("toggleterm.terminal").Terminal
--- local lazygit = Terminal:new({ cmd = "lazygit", display_name = "LazyGit", close_on_exit = true })
---
--- function _lazygit_toggle()
--- 	lazygit:toggle()
--- end
---
--- vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>lua _lazygit_toggle()<CR>", {
--- 	noremap = true,
--- 	silent = true,
--- })
--- TODO: It's giving me some weird error about vim.highlight functions not existing, so
---  I'll just continue tmuxing into another session for Lazygit instead.
 
 -- LuaSnip
 local luasnip = require("luasnip")
