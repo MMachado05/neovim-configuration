@@ -73,7 +73,7 @@ vim.keymap.set("n", "<leader>ff", telescope_builtin.find_files, {})
 vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fb", telescope_builtin.buffers, {})
 
-local spelling = require("resources.telescope_spelling")
+local spelling = require("mmachado.layouts.telescope_spelling")
 vim.keymap.set("n", "<leader>ss", function()
 	telescope_builtin.spell_suggest({ create_layout = spelling })
 end)

@@ -84,6 +84,9 @@ return {
       vim.g.undotree_TreeNodeShape = ""
     end,
   },
+  {
+    "MunifTanjim/nui.nvim",
+  },
 
   -- Prettying up existing features
   {
