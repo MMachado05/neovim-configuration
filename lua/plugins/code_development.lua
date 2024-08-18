@@ -20,7 +20,6 @@ return {
         ensure_installed = {
           "vim",
           "vimdoc",
-          "markdown",
           "python",
           "java",
           "c",
@@ -93,7 +92,7 @@ return {
         ensure_installed = {
           -- Python
           "pyright", -- LSP
-          "black",   -- Formatter
+          "black", -- Formatter
 
           -- Lua
           "lua_ls", -- LSP
@@ -103,8 +102,8 @@ return {
           "rust_analyzer", -- LSP
 
           -- Java
-          "jdtls",              -- LSP
-          "checkstyle",         -- Linter
+          "jdtls",         -- LSP
+          "checkstyle",    -- Linter
           "google-java-format", -- Formatter
           -- TODO: This shit's brokey but mason-null-ls seems like a good way to fix it.
           --  Might even allow me to move all the "ensured" stuff somewhere else, too.
@@ -155,9 +154,9 @@ return {
         }),
         sources = cmp.config.sources({
           -- Now, each luatable has decreasing priority
-          { name = "nvim_lsp" },                   -- LSP has highest priority
-          { name = "luasnip" },                    -- Next is personal snippets (might change this)
-          { name = "path" },                       -- Finally, anything relating to filepaths
+          { name = "nvim_lsp" },              -- LSP has highest priority
+          { name = "luasnip" },               -- Next is personal snippets (might change this)
+          { name = "path" },                  -- Finally, anything relating to filepaths
         }, {
           { name = "buffer", max_item_count = 6 }, -- If all else fails, text in the current buffer
         }),
@@ -225,7 +224,7 @@ return {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
-      signs = true,      -- show icons in the signs column
+      signs = true,   -- show icons in the signs column
       sign_priority = 8, -- sign priority
       -- keywords recognized as todo comments
       keywords = {
@@ -243,8 +242,8 @@ return {
         TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
       },
       gui_style = {
-        fg = "NONE",         -- The gui style to use for the fg highlight group.
-        bg = "BOLD",         -- The gui style to use for the bg highlight group.
+        fg = "NONE",      -- The gui style to use for the fg highlight group.
+        bg = "BOLD",      -- The gui style to use for the bg highlight group.
       },
       merge_keywords = true, -- when true, custom keywords will be merged with the defaults
       -- highlighting of the line containing the todo comment
@@ -252,16 +251,16 @@ return {
       -- * keyword: highlights of the keyword
       -- * after: highlights after the keyword (todo text)
       highlight = {
-        multiline = true,                -- enable multine todo comments
-        multiline_pattern = "^.",        -- lua pattern to match the next multiline from the start of the matched keyword
-        multiline_context = 10,          -- extra lines that will be re-evaluated when changing a line
-        before = "",                     -- "fg" or "bg" or empty
-        keyword = "wide",                -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
-        after = "fg",                    -- "fg" or "bg" or empty
+        multiline = true,            -- enable multine todo comments
+        multiline_pattern = "^.",    -- lua pattern to match the next multiline from the start of the matched keyword
+        multiline_context = 10,      -- extra lines that will be re-evaluated when changing a line
+        before = "",                 -- "fg" or "bg" or empty
+        keyword = "wide",            -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+        after = "fg",                -- "fg" or "bg" or empty
         pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
-        comments_only = true,            -- uses treesitter to match keywords in comments only
-        max_line_len = 400,              -- ignore lines longer than this
-        exclude = {},                    -- list of file types to exclude highlighting
+        comments_only = true,        -- uses treesitter to match keywords in comments only
+        max_line_len = 400,          -- ignore lines longer than this
+        exclude = {},                -- list of file types to exclude highlighting
       },
       -- list of named colors where we try to extract the guifg from the
       -- list of highlight groups or use the hex color if hl not found as a fallback
@@ -301,11 +300,33 @@ return {
     -- TODO: I need to read up on the documentation for this (and honestly, all of my plugins)
   },
 
-  -- ------------------------------
-  -- Vimtex for LaTeX, specifically
-  -- ------------------------------
+  -- -------------------------
+  -- Language-specific plugins
+  -- -------------------------
   {
     "lervag/vimtex",
     lazy = false,
+  },
+  {
+    "preservim/vim-markdown",
+    dependencies = {
+      "godlygeek/tabular",
+    },
+    config = function()
+      -- disable header folding
+      vim.g.vim_markdown_folding_disabled = 1
+
+      -- do not use conceal feature, the implementation is not so good
+      vim.g.vim_markdown_conceal = 0
+
+      -- disable math tex conceal feature
+      vim.g.tex_conceal = ""
+      vim.g.vim_markdown_math = 1
+
+      -- support front matter of various format
+      vim.g.vim_markdown_frontmatter = 1  -- for YAML format
+      vim.g.vim_markdown_toml_frontmatter = 1  -- for TOML format
+      vim.g.vim_markdown_json_frontmatter = 1  -- for JSON format
+    end,
   },
 }
