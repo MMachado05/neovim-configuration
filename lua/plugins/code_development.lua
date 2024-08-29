@@ -24,6 +24,7 @@ return {
           "java",
           "c",
           "lua",
+          "markdown",
         },
         highlight = { enable = true },
         indent = { enable = true },
@@ -54,7 +55,7 @@ return {
           none_ls.builtins.formatting.black,
 
           -- Markdown
-          none_ls.builtins.formatting.mdformat,
+          -- none_ls.builtins.formatting.mdformat,
           -- Like it says elsewhere, this should all eventually be done with mason-null-ls
         },
       })
@@ -73,7 +74,13 @@ return {
       lspconfig.rust_analyzer.setup({
         capabilities = capabilities,
       })
-      lspconfig.pyright.setup({
+      lspconfig.jedi_language_server.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.clangd.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.texlab.setup({
         capabilities = capabilities,
       })
     end,
@@ -90,21 +97,24 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
+          -- C
+          "clangd",
+
           -- Python
-          "pyright", -- LSP
-          "black", -- Formatter
+          "jedi_language_server", -- LSP
+          -- "black",   -- Formatter
 
           -- Lua
           "lua_ls", -- LSP
-          "stylua", -- Formatter
+          -- "stylua", -- Formatter
 
           -- Rust
           "rust_analyzer", -- LSP
 
           -- Java
-          "jdtls",         -- LSP
-          "checkstyle",    -- Linter
-          "google-java-format", -- Formatter
+          "jdtls", -- LSP
+          -- "checkstyle",         -- Linter
+          -- "google-java-format", -- Formatter
           -- TODO: This shit's brokey but mason-null-ls seems like a good way to fix it.
           --  Might even allow me to move all the "ensured" stuff somewhere else, too.
 
@@ -112,10 +122,22 @@ return {
           "lemminx",
 
           -- Markdown
-          "marksman", -- LSP
+          -- "marksman", -- LSP
+          "texlab",
         },
       })
     end,
+  },
+  {
+    -- TODO: There's a lot of stuff I can configure here, so I'll have to look into that
+    -- "nvimdev/lspsaga.nvim",
+    -- config = function()
+    --   require("lspsaga").setup({})
+    -- end,
+    -- dependencies = {
+    --   "nvim-treesitter/nvim-treesitter",
+    --   "nvim-tree/nvim-web-devicons"
+    -- }
   },
 
   -- ----------------------------
@@ -154,9 +176,9 @@ return {
         }),
         sources = cmp.config.sources({
           -- Now, each luatable has decreasing priority
-          { name = "nvim_lsp" },              -- LSP has highest priority
-          { name = "luasnip" },               -- Next is personal snippets (might change this)
-          { name = "path" },                  -- Finally, anything relating to filepaths
+          { name = "nvim_lsp" },                   -- LSP has highest priority
+          { name = "luasnip" },                    -- Next is personal snippets (might change this)
+          { name = "path" },                       -- Finally, anything relating to filepaths
         }, {
           { name = "buffer", max_item_count = 6 }, -- If all else fails, text in the current buffer
         }),
@@ -224,7 +246,7 @@ return {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
-      signs = true,   -- show icons in the signs column
+      signs = true,      -- show icons in the signs column
       sign_priority = 8, -- sign priority
       -- keywords recognized as todo comments
       keywords = {
@@ -242,8 +264,8 @@ return {
         TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
       },
       gui_style = {
-        fg = "NONE",      -- The gui style to use for the fg highlight group.
-        bg = "BOLD",      -- The gui style to use for the bg highlight group.
+        fg = "NONE",         -- The gui style to use for the fg highlight group.
+        bg = "BOLD",         -- The gui style to use for the bg highlight group.
       },
       merge_keywords = true, -- when true, custom keywords will be merged with the defaults
       -- highlighting of the line containing the todo comment
@@ -251,16 +273,16 @@ return {
       -- * keyword: highlights of the keyword
       -- * after: highlights after the keyword (todo text)
       highlight = {
-        multiline = true,            -- enable multine todo comments
-        multiline_pattern = "^.",    -- lua pattern to match the next multiline from the start of the matched keyword
-        multiline_context = 10,      -- extra lines that will be re-evaluated when changing a line
-        before = "",                 -- "fg" or "bg" or empty
-        keyword = "wide",            -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
-        after = "fg",                -- "fg" or "bg" or empty
+        multiline = true,                -- enable multine todo comments
+        multiline_pattern = "^.",        -- lua pattern to match the next multiline from the start of the matched keyword
+        multiline_context = 10,          -- extra lines that will be re-evaluated when changing a line
+        before = "",                     -- "fg" or "bg" or empty
+        keyword = "wide",                -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+        after = "fg",                    -- "fg" or "bg" or empty
         pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
-        comments_only = true,        -- uses treesitter to match keywords in comments only
-        max_line_len = 400,          -- ignore lines longer than this
-        exclude = {},                -- list of file types to exclude highlighting
+        comments_only = true,            -- uses treesitter to match keywords in comments only
+        max_line_len = 400,              -- ignore lines longer than this
+        exclude = {},                    -- list of file types to exclude highlighting
       },
       -- list of named colors where we try to extract the guifg from the
       -- list of highlight groups or use the hex color if hl not found as a fallback
@@ -324,9 +346,9 @@ return {
       vim.g.vim_markdown_math = 1
 
       -- support front matter of various format
-      vim.g.vim_markdown_frontmatter = 1  -- for YAML format
-      vim.g.vim_markdown_toml_frontmatter = 1  -- for TOML format
-      vim.g.vim_markdown_json_frontmatter = 1  -- for JSON format
+      vim.g.vim_markdown_frontmatter = 1      -- for YAML format
+      vim.g.vim_markdown_toml_frontmatter = 1 -- for TOML format
+      vim.g.vim_markdown_json_frontmatter = 1 -- for JSON format
     end,
   },
 }
