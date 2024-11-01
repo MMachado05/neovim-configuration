@@ -1,6 +1,10 @@
 -- --------------------
 -- Vim-related Keybinds
 -- --------------------
+-- Common commands
+vim.keymap.set("n", "<leader>;w", ":w<CR>", {})
+vim.keymap.set("n", "<leader>;x", ":xa<CR>", {})
+
 -- Allow j/k through wrapped lines
 vim.cmd("noremap <expr> j v:count ? 'j' : 'gj'")
 vim.cmd("noremap <expr> k v:count ? 'k' : 'gk'")
@@ -19,6 +23,7 @@ vim.keymap.set("n", "<leader>sh", ":split<CR>", {})
 -- Moving across buffers
 vim.keymap.set("n", "<leader>bp", ":bp<CR>", {})
 vim.keymap.set("n", "<leader>bn", ":bn<CR>", {})
+vim.keymap.set("n", "<leader>bd", ":bd<CR>", {})
 
 -- LSP features
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, {})
@@ -49,6 +54,9 @@ vim.keymap.set("n", "<leader>lr", ":colorscheme rose-pine-dawn | FloatBorderBGOf
 -- -----------------------
 -- Plugin-related Keybinds
 -- -----------------------
+-- VimTex
+vim.keymap.set("n", "<leader>vc", ":VimtexCompile<CR>", {})
+
 -- Trouble
 vim.keymap.set("n", "<leader>tr", ":TroubleToggle<CR>", {})
 
