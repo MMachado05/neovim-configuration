@@ -12,6 +12,7 @@ return {
   -- -------------------------------------------
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = { "tadmccorkle/nvim-treesitter" },
     build = ":TSUpdate",
     config = function()
       local configs = require("nvim-treesitter.configs")
@@ -29,7 +30,7 @@ return {
         },
         highlight = {
           enable = true,
-          disable = { "markdown", "markdown_inline" }
+          disable = { "markdown" }
         },
         indent = { enable = true },
         fold = { enable = true },
