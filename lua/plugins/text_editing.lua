@@ -9,36 +9,43 @@
 -- Plugins that make the general typing workflow nicer
 
 return {
-	{
-		"tpope/vim-surround",
-	},
-	{
-		"m4xshen/autoclose.nvim",
-		config = function()
-			require("autoclose").setup({
-				keys = {
-					["("] = { escape = false, close = true, pair = "()" },
-					["["] = { escape = false, close = true, pair = "[]" },
-					["{"] = { escape = false, close = true, pair = "{}" },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  },
+  {
+    "m4xshen/autoclose.nvim",
+    config = function()
+      require("autoclose").setup({
+        keys = {
+          ["("] = { escape = false, close = true, pair = "()" },
+          ["["] = { escape = false, close = true, pair = "[]" },
+          ["{"] = { escape = false, close = true, pair = "{}" },
 
-					[">"] = { escape = true, close = false, pair = "<>" },
-					[")"] = { escape = true, close = false, pair = "()" },
-					["]"] = { escape = true, close = false, pair = "[]" },
-					["}"] = { escape = true, close = false, pair = "{}" },
+          [">"] = { escape = true, close = false, pair = "<>" },
+          [")"] = { escape = true, close = false, pair = "()" },
+          ["]"] = { escape = true, close = false, pair = "[]" },
+          ["}"] = { escape = true, close = false, pair = "{}" },
 
-					['"'] = { escape = true, close = true, pair = '""' },
-					["'"] = { escape = true, close = true, pair = "''" },
-					["`"] = { escape = true, close = true, pair = "``" },
-				},
-				options = {
-					disabled_filetypes = { "text", "markdown" },
-					disable_when_touch = false,
-					touch_regex = "[%w(%[{]",
-					pair_spaces = false,
-					auto_indent = true,
-					disable_command_mode = false,
-				},
-			})
-		end,
-	},
+          ['"'] = { escape = true, close = true, pair = '""' },
+          ["'"] = { escape = true, close = true, pair = "''" },
+          ["`"] = { escape = true, close = true, pair = "``" },
+        },
+        options = {
+          disabled_filetypes = { "text", "markdown" },
+          disable_when_touch = false,
+          touch_regex = "[%w(%[{]",
+          pair_spaces = false,
+          auto_indent = true,
+          disable_command_mode = false,
+        },
+      })
+    end,
+  },
 }
