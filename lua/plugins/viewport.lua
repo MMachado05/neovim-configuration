@@ -53,7 +53,7 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
-      "3rd/image.nvim",
+      -- "3rd/image.nvim",
     },
     config = function()
       require("neo-tree").setup({
@@ -69,7 +69,7 @@ return {
   },
   {
     -- For previewing images and viewing them in Neovim
-    "edluffy/hologram.nvim",
+    -- "edluffy/hologram.nvim",
     -- This won't work until I switch to using Kitty and have installed ImageMagick.
     --  I also want 3rd/image.nvim for Neotree image previewing, so I'll have to look int
     --  that again.
