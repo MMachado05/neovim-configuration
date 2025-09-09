@@ -1,9 +1,8 @@
 -- --------------------
 -- Vim-related Keybinds
 -- --------------------
--- Common commands
-vim.keymap.set("n", "<leader>;w", ":w<CR>", {})
-vim.keymap.set("n", "<leader>;x", ":xa<CR>", {})
+-- Misc
+vim.keymap.set("n", "<leader>sp", ":set spell<CR>")
 
 -- Allow j/k through wrapped lines
 vim.cmd("noremap <expr> j v:count ? 'j' : 'gj'")
@@ -33,6 +32,17 @@ vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, {}) -- Maybe there's a way
 vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, {})
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set({ "n", "v" }, "<leader>lc", vim.lsp.buf.code_action, {})
+
+-- Spelling
+vim.keymap.set("n", "<leader>sp", function ()
+  if vim.wo.spell then
+    vim.wo.spell = false
+    vim.notify("Spellcheck OFF", vim.log.levels.INFO)
+  else
+    vim.wo.spell = true
+    vim.notify("Spellcheck ON", vim.log.levels.INFO)
+  end
+end, { noremap = true, silent = true })
 
 -- ----------------------
 -- Preferred Colorschemes

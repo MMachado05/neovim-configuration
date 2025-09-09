@@ -62,13 +62,20 @@ return {
           -- Markdown
           -- none_ls.builtins.formatting.mdformat,
           -- Like it says elsewhere, this should all eventually be done with mason-null-ls
+          none_ls.builtins.formatting.htmlbeautifier,
+
+          none_ls.builtins.formatting.asmfmt,
         },
       })
     end,
   },
   {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      "nvim-java/nvim-java"
+    },
     config = function()
+      require("java").setup()
       local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -86,6 +93,9 @@ return {
         capabilities = capabilities,
       })
       lspconfig.texlab.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.jdtls.setup({
         capabilities = capabilities,
       })
     end,
@@ -117,7 +127,7 @@ return {
           "rust_analyzer", -- LSP
 
           -- Java
-          "jdtls", -- LSP
+          -- "jdtls", -- LSP
           -- "checkstyle",         -- Linter
           -- "google-java-format", -- Formatter
           -- TODO: This shit's brokey but mason-null-ls seems like a good way to fix it.
@@ -143,6 +153,15 @@ return {
     --   "nvim-treesitter/nvim-treesitter",
     --   "nvim-tree/nvim-web-devicons"
     -- }
+  },
+  {
+    -- Dotnet stuff
+    -- lazy.nvim
+    "GustavEikaas/easy-dotnet.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", 'nvim-telescope/telescope.nvim', },
+    config = function()
+      require("easy-dotnet").setup()
+    end
   },
 
   -- ----------------------------
@@ -329,12 +348,18 @@ return {
   {
     "rachartier/tiny-inline-diagnostic.nvim",
     event = "LspAttach", -- Or `LspAttach`
-    priority = 1000,    -- needs to be loaded in first
+    priority = 1000,     -- needs to be loaded in first
     config = function()
       require('tiny-inline-diagnostic').setup()
-      vim.diagnostic.config({ virtual_text = false })   -- Only if needed in your configuration, if you already have native LSP diagnostics
+      vim.diagnostic.config({ virtual_text = false }) -- Only if needed in your configuration, if you already have native LSP diagnostics
     end
   },
+  -- {
+  --   "andrewferrier/wrapping.nvim",
+  --   config = function()
+  --     require("wrapping").setup()
+  --   end
+  -- },
 
   -- -------------------------
   -- Language-specific plugins

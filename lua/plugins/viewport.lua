@@ -116,6 +116,20 @@ return {
   -- ---------------
   -- Visual Elements
   -- ---------------
+  -- {
+  --   "vhyrro/luarocks.nvim",
+  --   priority = 2000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
+  --   config = true,
+  -- },
+  {
+    -- "3rd/image.nvim", TODO: Fix this shit bro I wanna have images in markdownnnnnnuh.
+    -- rocks = {
+    --   hererocks = true,
+    -- },
+  },
+  {
+    "HakonHarnes/img-clip.nvim",
+  },
   {
     -- NOTE: This requires the pynvim python package (pip3 install pynvim)
     "TaDaa/vimade",
